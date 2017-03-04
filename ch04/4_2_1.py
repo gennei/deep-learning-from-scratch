@@ -1,3 +1,4 @@
+# 2乗誤差
 import numpy as np
 
 def mean_squared_error(y, t):
