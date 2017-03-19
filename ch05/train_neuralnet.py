@@ -26,21 +26,41 @@ for i in range(iters_num):
     batch_mask = np.random.choice(train_size, batch_size)
     x_batch = x_train[batch_mask]
     t_batch = t_train[batch_mask]
-    
+
     # 勾配
     #grad = network.numerical_gradient(x_batch, t_batch)
     grad = network.gradient(x_batch, t_batch)
-    
+
     # 更新
     for key in ('W1', 'b1', 'W2', 'b2'):
         network.params[key] -= learning_rate * grad[key]
-    
+
     loss = network.loss(x_batch, t_batch)
     train_loss_list.append(loss)
-    
+
     if i % iter_per_epoch == 0:
         train_acc = network.accuracy(x_train, t_train)
         test_acc = network.accuracy(x_test, t_test)
         train_acc_list.append(train_acc)
         test_acc_list.append(test_acc)
         print(train_acc, test_acc)
+
+'''
+0.0996166666667 0.1008
+0.904933333333 0.9064
+0.925166666667 0.9273
+0.935016666667 0.9372
+0.944166666667 0.9428
+0.950966666667 0.9506
+0.95655 0.9548
+0.960333333333 0.9568
+0.963033333333 0.958
+0.967233333333 0.9627
+0.968433333333 0.9642
+0.970783333333 0.9637
+0.972783333333 0.967
+0.973916666667 0.9692
+0.97575 0.9677
+0.976916666667 0.9703
+0.978683333333 0.9685
+'''
